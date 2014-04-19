@@ -8,6 +8,13 @@ from libc.math cimport sqrt, acos
     
 cdef inline int sign(double x):
     """
+    sign(x)
+    
+    :param x:
+    :type x: :class:`double`
+    :returns: +1 for x > 0, -1 for x < 0 and 0 when x==0
+    :rtype: :class:`int`
+    
     Signum function for doubles.
     """
     if x > 0.0: 
@@ -280,37 +287,95 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
     
     cpdef Vector cosines_with(self, Point point):
         """
+        cosines_with(point)
+        
         Cosines of this point with ``point``.
+        
+        :param point: Point
+        :type point: :class:`Point`
+        :returns: Vector representing the cosines.
+        :rtype: :class:`Vector`
+        
+        See :func:`cosines`.
         """
         return cosines(self, point)
     
     cpdef double distance_to(self, Point point):
         """
-        Distance between this point and point.
+        distance_to(point)
+        
+        Distance between this point and ``point``.
+        
+        :param point: Other point.
+        :type point: :class:`Point`
+        :returns: Distance
+        :rtype: :class:`double`
+        
+        The distance to ``point`` is calculated by calling :meth:`Point.to()` and then :meth:`Vector.norm()`.
+        
         """
         return self.to(point).norm()
     
     cpdef Point mirror_with(self, Plane plane):
         """
+        mirror_with(plane)
+        
         Mirror point with plane.
+        
+        :param plane: Plane
+        :type plane: :class:`Plane`
+        :returns: Mirror point
+        :rtype: :class:`Point`
+        
+        See :func:`mirror_point()`.
         """
         return mirror_point(self, foot_point(self, plane))
 
     cpdef int on_interior_side_of(self, Plane plane):
         """
+        on_interior_side_of(plane)
+        
         Determine whether this point is on the interior side of ``plane``.
+        
+        :param plane: Plane
+        :type plane: :class:`Plane`
+        :returns: +1 when on inside, ...
+        :rtype: :class:`int`
+        
+        See :func:`is_point_on_interior_side`.
+        
         """
         return is_point_on_interior_side(self, plane)
 
     cpdef int in_field_angle(self, Point apex, Polygon plane_A, Plane plane_W):
         """
+        in_field_angle(apex, plane_A, plane_W)
+        
         Determine whether this points can be seen from ``apex``.
+        
+        :param apex: Apex point
+        :type apex: :class:`Point`
+        :param plane_A: Plane :math:`A`.
+        :type plane_A: :class:`Plane`
+        :param plane_W: Plane :math:`W`.
+        :type plane_W: :class:`Plane`
+        :returns: +1...
+        :rtype: :class:`int`
+        
+        See :func:`is_point_in_field_angle()`.
         """
         return is_point_in_field_angle(apex, self, plane_A, plane_W)
         
     cpdef Vector to(self, Point point):
         """
+        to(point)
+        
         Return the vector from this point to ``point``.
+        
+        :param point: Point
+        :type point: :class:`Point`
+        :returns: Vector from this point to ``point``.
+        :rtype: :class:`Vector`
         """
         return Vector(point.x-self.x, point.y-self.y, point.z-self.z)
 
@@ -528,19 +593,37 @@ cdef class Vector(object):
 
     cpdef double min(self):
         """
+        min()
+        
         Minimum value of the components.
+        
+        :returns: Minimum value.
+        :rtype: :class:`double`
+        
         """
         return min(self.x, self.y, self.z)
     
     cpdef double max(self):
         """
-        Minimum value of the components.
+        max()
+        
+        Maximum value of the components.
+        
+        :returns: Maximum value.
+        :rtype: :class:`double`
+        
         """
         return max(self.x, self.y, self.z)
 
     cpdef int argmin(self):
         """
+        argmin()
+        
         Index of minimum value of the components.
+        
+        :returns: Index
+        :rtype: :class:`int`
+        
         """
         if self.x<=self.y<=self.z:
             return 0
@@ -552,6 +635,10 @@ cdef class Vector(object):
     cpdef int argmax(self):
         """
         Index of maximum value of the components.
+        
+        :returns: Index
+        :rtype: :class:`int`
+        
         """
         if self.x>=self.y>=self.z:
             return 0
@@ -562,7 +649,12 @@ cdef class Vector(object):
     
     cpdef double norm(self):
         """
+        norm()
+        
         Return the norm/length of the vector.
+        
+        :returns: Norm
+        :rtype: :class:`double`
         
         .. math:: |\\mathbf{x}| = \\sqrt{\\mathbf{x}\\mathbf{x}}
         
@@ -571,19 +663,41 @@ cdef class Vector(object):
         
     cpdef Vector normalize(self):
         """
+        normalize()
+        
         Return a normalized vector.
+        
+        :returns: Normalized copy of this vector.
+        :rtype: :class:`Vector`
+        
         """
         return self/self.norm()
     
     cpdef double angle(self, Vector other):
         """
-        Return angle between self and other.
+        angle(other)
+        
+        Return angle between this vector and another vector.
+        
+        :param other: Other vector
+        :type other: :class:`Vector`
+        :returns: Angle
+        :rtype: :class:`double`
+        
         """
         return acos((self*other)/(abs(self)*abs(other)))
     
     cpdef double cosines_with(self, Vector vector):
         """
+        cosines_with(vector)
+        
         Cosine between this vector and another vector.
+        
+        :param vector: Other vector
+        :type vector: :class:`Vector`
+        :returns: Cosine
+        :rtype: :class:`double`
+        
         """
         return cosine_between_vectors(self, vector)
     
@@ -595,13 +709,27 @@ cdef class Vector(object):
     
     cpdef double dot(self, Vector vector):
         """
-        Dot product of this vector with vector.
+        dot(vector)
+        
+        Dot product of this vector with another vector.
+        
+        :param vector: Other vector
+        :type vector: :class:`Vector`
+        :returns: Dot product
+        :rtype: :class:`double`
         """
         return self.x*vector.x + self.y*vector.y + self.z*vector.z
     
     cpdef Vector cross(self, Vector vector):
         """
-        Cross product of this vector with vector.
+        cross(vector)
+        
+        Cross product of this vector with another vector.
+        
+        :param vector: Other vector
+        :type vector: :class:`Vector`
+        :returns: Cross product
+        :rtype: :class:`Vector`
         """
         return cross(self, vector)
     
@@ -609,13 +737,26 @@ cdef class Vector(object):
     def from_points(cls, point_a, point_b):
         """
         Create a vector from point a to point b.
+        
+        :param point_a: Point :math:`a`
+        :param point_b: Point :math:`b`
+        
         """
         return cls(*(point_b - point_a))
         
 
 cpdef double dot(Vector a, Vector b):
     """
+    dot(a, b)
+    
     Dot product of vectors a and b.
+    
+    :param a: Vector :math:`a`.
+    :type a: :class:`Vector`
+    :param b: Vector :math:`b`.
+    :type b: :class:`Vector`
+    :returns: Dot product
+    :rtype: :class:`double`
     
     The dot product is given by
     
@@ -626,6 +767,15 @@ cpdef double dot(Vector a, Vector b):
 
 cpdef Vector cross(Vector a, Vector b):
     """
+    cross(a, b)
+    
+    :param a: Vector :math:`a`.
+    :type a: :class:`Vector`
+    :param b: Vector :math:`b`.
+    :type b: :class:`Vector`
+    :returns: Cross product
+    :rtype: :class:`Vector`
+    
     Cross product of vectors a and b.
     
     The cross product is given by
@@ -645,6 +795,15 @@ cpdef Vector cross(Vector a, Vector b):
 
 cdef double distance(Point a, Point b):
     """
+    distance(a, b)
+    
+    :param a: Point :math:`a`
+    :type a: :class:`Point`
+    :param b: Point :math:`b`
+    :type b: :class:`Point`
+    :returns: Distance
+    :rtype: :class:`double`
+    
     Eucledian distance between points a and b.
     
     Subtask 1: Distance between two points.
@@ -682,7 +841,9 @@ cdef class Edge(object):
 
 cdef class Plane(object):
     """
-    Plane specified by reduced normal form
+    Plane specified by reduced normal form.
+    
+    A plane is a flat, two-dimensional surface.
     """
     
     #cdef public double a
@@ -699,19 +860,49 @@ cdef class Plane(object):
 
     cpdef Vector normal(self):
         """
+        normal()
+        
         Normal vector of plane.
+        
+        :returns: Vector
+        :rtype: :class:`Vector`
+        
         """
         return Vector(self.a, self.b, self.c)
     
     cpdef Point intersection(self, Point a, Point b):
         """
+        intersection(a, b)
+        
         Determine the point where a line specified by the points ``a`` and ``b`` intersect this plane.
+        
+        :param a: Point :math:`a`.
+        :type a: :class:`Point`
+        :param b: Point :math:`b`.
+        :type b: :class:`Point`
+        :returns: Point
+        :rtype: :class:`Point`
+        
+        See :func:`intersection_point`.
+        
         """
         return intersection_point(self, a, b)
     
     cpdef int intersects(self, Point a, Point b):
         """
+        intersects(a, b)
+        
         Test whether the line given by the points intersects this plane.
+        
+        :param a: Point :math:`a`.
+        :type a: :class:`Point`
+        :param b: Point :math:`b`
+        :type b: :class:`Point`
+        :returns: +1 when...
+        :rtype: :class:`int`
+        
+        See :func:`intersects`
+        
         """
         return intersects(self, a, b)
     
@@ -745,13 +936,23 @@ cdef class Plane(object):
     @classmethod
     def from_normal(cls, normal):
         """
-        Create a plane objeect using a normal vector.
+        from_normal(normal)
+        
+        Create a plane object using a normal vector.
+        
+        :param normal: Normal vector
+        :type normal :class:`Vector`
+        :returns: Plane
+        :rtype: :class:`Plane`
+        
         """
         return cls(normal.x, normal.y, normal.z, 0.0)
     
     @classmethod
     def from_normal_and_point(cls, normal, point):
         """
+        from_normal_and_point(normal, point)
+        
         Create a plane object given a normal vector and a point in the plane.
         """
         return cls(normal.x, normal.y, normal.z, -(normal.x*point.x + normal.y*point.y + normal.z*point.z))
@@ -759,6 +960,8 @@ cdef class Plane(object):
     @classmethod
     def from_points(cls, points):
         """
+        from_points(points)
+        
         Create a Plane object using three points.
         """
         return cls(*reduced_normal_form(*normal_form(*tuple(points[0:3]))))
@@ -856,7 +1059,19 @@ cdef class Polygon(object):
  
 def normal_form(Point a, Point b, Point c):
     """
+    normal_form(a, b, c)
+    
     Normal form of plane.
+    
+    :param a: Point a
+    :type a: :class:`Point`
+    :param b: Point b
+    :type b: :class:`Point`
+    :param c: Point c
+    :type c: :class:`Point`
+    :returns: Normal form of plane.
+    :rtype: :class:`tuple`
+    
     
     The plane is defined by three points.
     
@@ -874,7 +1089,25 @@ def normal_form(Point a, Point b, Point c):
 
 def reduced_normal_form(double A, double B, double C, double D):
     """
+    reduced_normal_form(A, B, C, D)
+    
     Reduced normal form of a plane.
+    
+    :param A: Value :math:`A`
+    :type A: :class:`double`
+    :param B: Value :math:`B`
+    :type B: :class:`double`
+    :param C: Value :math:`C`
+    :type C: :class:`double`
+    :param D: Value :math:`D`
+    :type D: :class:`double`
+    :returns: Reduced normal form ``(a, b, c, d)``
+    :rtype: :class:`tuple`
+    
+    .. math: a = A / \\sqrt{ A^2 + B^2 + C^2}
+    .. math: b = B / \\sqrt{ A^2 + B^2 + C^2}
+    .. math: c = C / \\sqrt{ A^2 + B^2 + C^2}
+    .. math: d = D / \\sqrt{ A^2 + B^2 + C^2}
     
     See ((5))
     """
@@ -887,7 +1120,17 @@ def reduced_normal_form(double A, double B, double C, double D):
 
 cpdef Point foot_point(Point point, Plane plane):
     """
+    foot_point(point, plane)
+    
     Foot point of point on plane.
+    
+    :param point: Point
+    :type point: :class:`Point`
+    :param plane: Plane
+    :type plane: :class:`Plane`
+    :returns: Foot point
+    :rtype: :class:`Point`
+    
     
     See ((6))
     """
@@ -903,7 +1146,18 @@ cpdef Point foot_point(Point point, Plane plane):
     
 cpdef Point mirror_point(Point point, Point foot_point):
     """
+    mirror_point(point, foot_point)
+    
     Mirror point of a point at a plane.
+    
+    .. math:: \\mathbf{m} = 2 \\mathbf{f} - \\mathbf{p}
+    
+    :param point: Point :math:`p`
+    :type point: :class:`Point`
+    :param foot_point: Foot point :math:`f`
+    :type point: :class:`Point`
+    :returns: Mirror point :math:`m`
+    :rtype: :class:`Point`
     
     See ((7))
     """
@@ -912,9 +1166,16 @@ cpdef Point mirror_point(Point point, Point foot_point):
 
 cpdef Vector cosines(Point a, Point b):
     """
+    cosines(a, b)
+    
     Cosines of point a with point b.
     
-    Returns cos(alpha), cos(beta), cos(gamma)
+    :param a: Point ``a``.
+    :type a: :class:`Point`
+    :param b: Point ``b``.
+    :type b: :class:`Point`
+    :returns: ``cos(alpha), cos(beta), cos(gamma)``
+    :rtype: :class:`Vector`
     
     See ((2))
     """
@@ -922,9 +1183,18 @@ cpdef Vector cosines(Point a, Point b):
     
 cpdef double cosine_between_vectors(Vector a, Vector b):
     """
+    cosine_between_vectors(a, b)
+    
     Cosine of angle between lines or more general vectors.
     
-    Returns cos(phi)
+    .. math:: \\cos{\\phi} = \\mathbf{a} \\mathbf{b}
+    
+    :param a: Vector ``a``.
+    :type a: :class:`Vector`
+    :param b: Vector ``b``.
+    :type b: :class:`Vector`
+    :returns: ``cos(phi)``
+    :type: :class:`float`
     
     See ((3))
     """
@@ -932,11 +1202,19 @@ cpdef double cosine_between_vectors(Vector a, Vector b):
 
 cpdef Point intersection_point(Plane plane, Point a, Point b):
     """
+    intersection_point(plane, a, b)
+    
     Intersection point of a straight line through two points with a plane.
     
     :param plane: Plane
+    :type plane: :class:`Plane`
     :param a: Point a
+    :type a: :class:`Point`
     :param b: Point b
+    :type b: :class:`Point`
+    :returns: Intersection point.
+    :rtype: :class:`Point`
+    
     
     See ((9))
     """
@@ -966,11 +1244,19 @@ cpdef Point intersection_point(Plane plane, Point a, Point b):
 
 cpdef int intersects(Plane plane, Point a, Point b):
     """
-    Test whether the plane is intersected by the line given by the points.
+    intersects(plane, a, b)
     
-    Returns +1 for a points intersection.
-    Returns 0 when there is no intersection.
-    Returns -1 for a line intersection.
+    Test whether the plane ``plane`` is intersected by the line given by the points ``a`` and ``b``.
+    
+    :param plane: Plane
+    :type plane: :class:`Plane`
+    :param a: Point a
+    :type a: :class:`Point`
+    :param b: Point b
+    :type b: :class:`Point`
+    :returns: +1 for a point intersection, 0 when there is no intersection and -1 for a line intersection.
+    :rtype: :class:`int`
+
     """
     cdef Point plane_point
     plane_point = Point(*(-plane.d * plane.normal()))
@@ -988,12 +1274,16 @@ cpdef int intersects(Plane plane, Point a, Point b):
 
 cpdef int is_point_on_interior_side(Point point, Plane plane):
     """
+    is_point_on_interior_side(point, plane)
+    
     Test whether ``point`` is on the interior side of ``plane``.
     
-    
-    Returns +1 when point is on interior side.
-    Returns 0 when point lies on the plane.
-    Returns -1 when point is on the exterior side.
+    :param point: Point
+    :type point: :class:`Point`
+    :param plane: Plane
+    :type plane: :class:`Plane`
+    :returns: +1 when point is on interior side, 0 when point lies on the plane, and -1 when point is on the exterior side.
+    :rtype: :class:`int`
     
     See ((15))
     """
@@ -1002,12 +1292,21 @@ cpdef int is_point_on_interior_side(Point point, Plane plane):
 
 cpdef int is_point_in_field_angle(Point apex, Point point, Polygon polygon_A, Plane plane_W):
     """
+    is_point_in_field_angle(apex, point, polygon_A, plane_W
+    
     Test whether the ``point`` P on the surface of plane W lies within the projection of the plane A by ``apex`` on the plane W.
     
     :param apex: Point q
+    :type apex :class:`Point`
     :param point: Point P
+    :type point: :class:`Point`
     :param polygon_A: Polygon A
+    :type polygon_A: :class:`Polygon`
     :param plane_W: Plane W
+    :type plane_W: :class:`Plane`
+    :returns: +1 or -1.
+    :rtype: :class:`int`
+    
     
     See ((16))
     """
