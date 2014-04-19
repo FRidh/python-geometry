@@ -563,6 +563,9 @@ cdef class Vector(object):
     cpdef double norm(self):
         """
         Return the norm/length of the vector.
+        
+        .. math:: |\\mathbf{x}| = \\sqrt{\\mathbf{x}\\mathbf{x}}
+        
         """
         return sqrt(self*self)
         
@@ -794,7 +797,8 @@ cdef class Polygon(object):
         """
         Area of a polygon.
         
-        :math: A = \\frac{1}{2} \\sum_{i=0}^{N-1} \\left( x_{i} y_{i+1} - x_{i+1} y_{i}  \\right)
+        .. math:: A = \\frac{1}{2} \\sum_{i=0}^{N-1} \\left( x_{i} y_{i+1} - x_{i+1} y_{i}  \\right)
+        
         """
         cdef double A
         cdef int N
