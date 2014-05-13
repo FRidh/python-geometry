@@ -1,0 +1,909 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reference &mdash; python-geometry 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="python-geometry 0.1 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to python-geometry’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to python-geometry’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">python-geometry 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reference">
+<span id="id1"></span><h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-geometry"></span><span class="target" id="module-geometry.core"></span><p>This module provides classes to work with 3D geometries.</p>
+<dl class="class">
+<dt id="geometry.core.Edge">
+<em class="property">class </em><tt class="descclassname">geometry.core.</tt><tt class="descname">Edge</tt><a class="headerlink" href="#geometry.core.Edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>The edge represents a line segment.</p>
+<dl class="method">
+<dt id="geometry.core.Edge.vector">
+<tt class="descname">vector</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Edge.vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return vector of this line.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="geometry.core.Plane">
+<em class="property">class </em><tt class="descclassname">geometry.core.</tt><tt class="descname">Plane</tt><a class="headerlink" href="#geometry.core.Plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Plane specified by reduced normal form.</p>
+<p>A plane is a flat, two-dimensional surface.</p>
+<dl class="staticmethod">
+<dt id="geometry.core.Plane.from_normal">
+<em class="property">static </em><tt class="descname">from_normal</tt><big>(</big><em>normal</em><big>)</big><a class="headerlink" href="#geometry.core.Plane.from_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a plane object using a normal vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>normal</strong> &#8211; Normal vector</td>
+</tr>
+</tbody>
+</table>
+<p>:type normal <a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>
+:returns: Plane
+:rtype: <a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a></p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="geometry.core.Plane.from_normal_and_point">
+<em class="property">static </em><tt class="descname">from_normal_and_point</tt><big>(</big><em>normal</em>, <em>point</em><big>)</big><a class="headerlink" href="#geometry.core.Plane.from_normal_and_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a plane object given a normal vector and a point in the plane.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="geometry.core.Plane.from_points">
+<em class="property">static </em><tt class="descname">from_points</tt><big>(</big><em>points</em><big>)</big><a class="headerlink" href="#geometry.core.Plane.from_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Plane object using three points.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Plane.intersection">
+<tt class="descname">intersection</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.Plane.intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine the point where a line specified by the points <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> intersect this plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point <span class="math">\(a\)</span>.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point <span class="math">\(b\)</span>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Point</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#geometry.core.intersection_point" title="geometry.core.intersection_point"><tt class="xref py py-func docutils literal"><span class="pre">intersection_point()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Plane.intersects">
+<tt class="descname">intersects</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.Plane.intersects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether the line given by the points intersects this plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point <span class="math">\(a\)</span>.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point <span class="math">\(b\)</span></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">+1 when...</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#geometry.core.intersects" title="geometry.core.intersects"><tt class="xref py py-func docutils literal"><span class="pre">intersects()</span></tt></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Plane.normal">
+<tt class="descname">normal</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Plane.normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normal vector of plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="geometry.core.Point">
+<em class="property">class </em><tt class="descclassname">geometry.core.</tt><tt class="descname">Point</tt><a class="headerlink" href="#geometry.core.Point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Point defined using Cartesian coordinates.</p>
+<dl class="method">
+<dt id="geometry.core.Point.cosines_with">
+<tt class="descname">cosines_with</tt><big>(</big><em>point</em><big>)</big><a class="headerlink" href="#geometry.core.Point.cosines_with" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cosines of this point with <tt class="docutils literal"><span class="pre">point</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>point</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Vector representing the cosines.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#geometry.core.cosines" title="geometry.core.cosines"><tt class="xref py py-func docutils literal"><span class="pre">cosines()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Point.distance_to">
+<tt class="descname">distance_to</tt><big>(</big><em>point</em><big>)</big><a class="headerlink" href="#geometry.core.Point.distance_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distance between this point and <tt class="docutils literal"><span class="pre">point</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>point</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Other point.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Distance</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>The distance to <tt class="docutils literal"><span class="pre">point</span></tt> is calculated by calling <a class="reference internal" href="#geometry.core.Point.to" title="geometry.core.Point.to"><tt class="xref py py-meth docutils literal"><span class="pre">Point.to()</span></tt></a> and then <a class="reference internal" href="#geometry.core.Vector.norm" title="geometry.core.Vector.norm"><tt class="xref py py-meth docutils literal"><span class="pre">Vector.norm()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Point.in_field_angle">
+<tt class="descname">in_field_angle</tt><big>(</big><em>apex</em>, <em>plane_A</em>, <em>plane_W</em><big>)</big><a class="headerlink" href="#geometry.core.Point.in_field_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine whether this points can be seen from <tt class="docutils literal"><span class="pre">apex</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>apex</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Apex point</li>
+<li><strong>plane_A</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane <span class="math">\(A\)</span>.</li>
+<li><strong>plane_W</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane <span class="math">\(W\)</span>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">+1...</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#geometry.core.is_point_in_field_angle" title="geometry.core.is_point_in_field_angle"><tt class="xref py py-func docutils literal"><span class="pre">is_point_in_field_angle()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Point.mirror_with">
+<tt class="descname">mirror_with</tt><big>(</big><em>plane</em><big>)</big><a class="headerlink" href="#geometry.core.Point.mirror_with" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mirror point with plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>plane</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Mirror point</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#geometry.core.mirror_point" title="geometry.core.mirror_point"><tt class="xref py py-func docutils literal"><span class="pre">mirror_point()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Point.on_interior_side_of">
+<tt class="descname">on_interior_side_of</tt><big>(</big><em>plane</em><big>)</big><a class="headerlink" href="#geometry.core.Point.on_interior_side_of" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine whether this point is on the interior side of <tt class="docutils literal"><span class="pre">plane</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>plane</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">+1 when on inside, ...</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="#geometry.core.is_point_on_interior_side" title="geometry.core.is_point_on_interior_side"><tt class="xref py py-func docutils literal"><span class="pre">is_point_on_interior_side()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Point.to">
+<tt class="descname">to</tt><big>(</big><em>point</em><big>)</big><a class="headerlink" href="#geometry.core.Point.to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the vector from this point to <tt class="docutils literal"><span class="pre">point</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>point</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Vector from this point to <tt class="docutils literal"><span class="pre">point</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="geometry.core.PointList">
+<em class="property">class </em><tt class="descclassname">geometry.core.</tt><tt class="descname">PointList</tt><a class="headerlink" href="#geometry.core.PointList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>List of Positions.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="geometry.core.Polygon">
+<em class="property">class </em><tt class="descclassname">geometry.core.</tt><tt class="descname">Polygon</tt><a class="headerlink" href="#geometry.core.Polygon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>3D Polygon defined by points.</p>
+<dl class="method">
+<dt id="geometry.core.Polygon.area">
+<tt class="descname">area</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Polygon.area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Area of a polygon.</p>
+<div class="math">
+\[A = \frac{1}{2} \sum_{i=0}^{N-1} \left( x_{i} y_{i+1} - x_{i+1} y_{i}  \right)\]</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Polygon.plane">
+<tt class="descname">plane</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Polygon.plane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the plane of this polygon.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="geometry.core.Vector">
+<em class="property">class </em><tt class="descclassname">geometry.core.</tt><tt class="descname">Vector</tt><a class="headerlink" href="#geometry.core.Vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Vector in Cartesian coordinate system.</p>
+<dl class="method">
+<dt id="geometry.core.Vector.angle">
+<tt class="descname">angle</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#geometry.core.Vector.angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return angle between this vector and another vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Other vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Angle</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.argmax">
+<tt class="descname">argmax</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Vector.argmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of maximum value of the components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.argmin">
+<tt class="descname">argmin</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Vector.argmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of minimum value of the components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.cosines_with">
+<tt class="descname">cosines_with</tt><big>(</big><em>vector</em><big>)</big><a class="headerlink" href="#geometry.core.Vector.cosines_with" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cosine between this vector and another vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vector</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Other vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Cosine</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.cross">
+<tt class="descname">cross</tt><big>(</big><em>vector</em><big>)</big><a class="headerlink" href="#geometry.core.Vector.cross" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cross product of this vector with another vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vector</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Other vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Cross product</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.dot">
+<tt class="descname">dot</tt><big>(</big><em>vector</em><big>)</big><a class="headerlink" href="#geometry.core.Vector.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dot product of this vector with another vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vector</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Other vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Dot product</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="geometry.core.Vector.from_points">
+<em class="property">static </em><tt class="descname">from_points</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Vector.from_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a vector from point a to point b.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>point_a</strong> &#8211; Point <span class="math">\(a\)</span></li>
+<li><strong>point_b</strong> &#8211; Point <span class="math">\(b\)</span></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.max">
+<tt class="descname">max</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Vector.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum value of the components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Maximum value.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.min">
+<tt class="descname">min</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Vector.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum value of the components.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Minimum value.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.norm">
+<tt class="descname">norm</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Vector.norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the norm/length of the vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Norm</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></td>
+</tr>
+</tbody>
+</table>
+<div class="math">
+\[|\mathbf{x}| = \sqrt{\mathbf{x}\mathbf{x}}\]</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="geometry.core.Vector.normalize">
+<tt class="descname">normalize</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.Vector.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a normalized vector.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Normalized copy of this vector.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.cosine_between_vectors">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">cosine_between_vectors</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.cosine_between_vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cosine of angle between lines or more general vectors.</p>
+<div class="math">
+\[\cos{\phi} = \mathbf{a} \mathbf{b}\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Vector <tt class="docutils literal"><span class="pre">a</span></tt>.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Vector <tt class="docutils literal"><span class="pre">b</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><tt class="docutils literal"><span class="pre">cos(phi)</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">float</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((3))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.cosines">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">cosines</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.cosines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cosines of point a with point b.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point <tt class="docutils literal"><span class="pre">a</span></tt>.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point <tt class="docutils literal"><span class="pre">b</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><tt class="docutils literal"><span class="pre">cos(alpha),</span> <span class="pre">cos(beta),</span> <span class="pre">cos(gamma)</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((2))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.cross">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">cross</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.cross" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Vector <span class="math">\(a\)</span>.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Vector <span class="math">\(b\)</span>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Cross product</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Cross product of vectors a and b.</p>
+<p>The cross product is given by</p>
+<div class="math">
+\[\mathbf{c} = \mathbf{a} \times \mathbf{b}\]</div>
+<p>and is calculated as</p>
+<div class="math">
+\[c_x = a_y b_z - a_z b_y\]</div>
+<div class="math">
+\[c_y = a_z b_x - a_x b_z\]</div>
+<div class="math">
+\[c_z = a_x b_y - a_y b_x\]</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.dot">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">dot</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dot product of vectors a and b.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Vector <span class="math">\(a\)</span>.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Vector" title="geometry.core.Vector"><tt class="xref py py-class docutils literal"><span class="pre">Vector</span></tt></a>) &#8211; Vector <span class="math">\(b\)</span>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Dot product</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">double</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The dot product is given by</p>
+<div class="math">
+\[c = \sum_{i=0}^{n-1} a_i b_i\]</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.foot_point">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">foot_point</tt><big>(</big><em>point</em>, <em>plane</em><big>)</big><a class="headerlink" href="#geometry.core.foot_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Foot point of point on plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point</li>
+<li><strong>plane</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Foot point</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((6))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.intersection_point">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">intersection_point</tt><big>(</big><em>plane</em>, <em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.intersection_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intersection point of a straight line through two points with a plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>plane</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane</li>
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point a</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point b</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Intersection point.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((9))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.intersects">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">intersects</tt><big>(</big><em>plane</em>, <em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#geometry.core.intersects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether the plane <tt class="docutils literal"><span class="pre">plane</span></tt> is intersected by the line given by the points <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>plane</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane</li>
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point a</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point b</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">+1 for a point intersection, 0 when there is no intersection and -1 for a line intersection.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.is_point_in_field_angle">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">is_point_in_field_angle</tt><big>(</big><big>)</big><a class="headerlink" href="#geometry.core.is_point_in_field_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>is_point_in_field_angle(apex, point, polygon_A, plane_W</p>
+<p>Test whether the <tt class="docutils literal"><span class="pre">point</span></tt> P on the surface of plane W lies within the projection of the plane A by <tt class="docutils literal"><span class="pre">apex</span></tt> on the plane W.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>apex</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point q</li>
+<li><strong>point</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point P</li>
+<li><strong>polygon_A</strong> (<a class="reference internal" href="#geometry.core.Polygon" title="geometry.core.Polygon"><tt class="xref py py-class docutils literal"><span class="pre">Polygon</span></tt></a>) &#8211; Polygon A</li>
+<li><strong>plane_W</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane W</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">+1 or -1.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((16))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.is_point_on_interior_side">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">is_point_on_interior_side</tt><big>(</big><em>point</em>, <em>plane</em><big>)</big><a class="headerlink" href="#geometry.core.is_point_on_interior_side" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether <tt class="docutils literal"><span class="pre">point</span></tt> is on the interior side of <tt class="docutils literal"><span class="pre">plane</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point</li>
+<li><strong>plane</strong> (<a class="reference internal" href="#geometry.core.Plane" title="geometry.core.Plane"><tt class="xref py py-class docutils literal"><span class="pre">Plane</span></tt></a>) &#8211; Plane</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">+1 when point is on interior side, 0 when point lies on the plane, and -1 when point is on the exterior side.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">int</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((15))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.mirror_point">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">mirror_point</tt><big>(</big><em>point</em>, <em>foot_point</em><big>)</big><a class="headerlink" href="#geometry.core.mirror_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mirror point of a point at a plane.</p>
+<div class="math">
+\[\mathbf{m} = 2 \mathbf{f} - \mathbf{p}\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>point</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point <span class="math">\(p\)</span></li>
+<li><strong>foot_point</strong> &#8211; Foot point <span class="math">\(f\)</span></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Mirror point <span class="math">\(m\)</span></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((7))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.normal_form">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">normal_form</tt><big>(</big><em>a</em>, <em>b</em>, <em>c</em><big>)</big><a class="headerlink" href="#geometry.core.normal_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normal form of plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point a</li>
+<li><strong>b</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point b</li>
+<li><strong>c</strong> (<a class="reference internal" href="#geometry.core.Point" title="geometry.core.Point"><tt class="xref py py-class docutils literal"><span class="pre">Point</span></tt></a>) &#8211; Point c</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Normal form of plane.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The plane is defined by three points.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>points</strong> &#8211; Iterable of of xyz tuples.</td>
+</tr>
+</tbody>
+</table>
+<p>See ((4))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geometry.core.reduced_normal_form">
+<tt class="descclassname">geometry.core.</tt><tt class="descname">reduced_normal_form</tt><big>(</big><em>A</em>, <em>B</em>, <em>C</em>, <em>D</em><big>)</big><a class="headerlink" href="#geometry.core.reduced_normal_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reduced normal form of a plane.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>A</strong> (<tt class="xref py py-class docutils literal"><span class="pre">double</span></tt>) &#8211; Value <span class="math">\(A\)</span></li>
+<li><strong>B</strong> (<tt class="xref py py-class docutils literal"><span class="pre">double</span></tt>) &#8211; Value <span class="math">\(B\)</span></li>
+<li><strong>C</strong> (<tt class="xref py py-class docutils literal"><span class="pre">double</span></tt>) &#8211; Value <span class="math">\(C\)</span></li>
+<li><strong>D</strong> (<tt class="xref py py-class docutils literal"><span class="pre">double</span></tt>) &#8211; Value <span class="math">\(D\)</span></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Reduced normal form <tt class="docutils literal"><span class="pre">(a,</span> <span class="pre">b,</span> <span class="pre">c,</span> <span class="pre">d)</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See ((5))</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to python-geometry&#8217;s documentation!</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/reference.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to python-geometry’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">python-geometry 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Frederik Rietdijk.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>
