@@ -1297,7 +1297,7 @@ cpdef int is_point_in_field_angle(Point apex, Point point, Polygon polygon_A, Pl
     Test whether the ``point`` P on the surface of plane W lies within the projection of the plane A by ``apex`` on the plane W.
     
     :param apex: Point q
-    :type apex :class:`Point`
+    :type apex: :class:`Point`
     :param point: Point P
     :type point: :class:`Point`
     :param polygon_A: Polygon A
