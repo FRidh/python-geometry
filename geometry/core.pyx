@@ -447,7 +447,7 @@ cdef class Vector(object):
         else:
             raise TypeError()
         
-    def __div__(self, other):
+    def __truediv__(self, other):
         if type(other) in [int, float, long]:
             return Vector(self.x/other, self.y/other, self.z/other)
         elif type(self) in [int, float, long]:
@@ -455,7 +455,7 @@ cdef class Vector(object):
         else:
             raise TypeError()
     
-    __truediv__ = __div__
+    __div__ = __truediv__
     
     def __mod__(self, other):
         if type(other) in [int, float, long]:
