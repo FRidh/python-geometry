@@ -252,35 +252,32 @@ class PolygonCase(unittest.TestCase):
         #print intersection
         
 
-class PointListCase(unittest.TestCase):
+#class PointListCase(unittest.TestCase):
     
-    def test_creation(self):
+    #def test_creation(self):
         
-        x =  np.ones((10,3))
-        p = PointList(x)
+        #x =  np.ones((10,3))
+        #p = PointList(x)
 
-        y = [ Point(1,2,3), Point(2,1,3) ]
-        p = PointList(y)
+        #y = [ Point(1,2,3), Point(2,1,3) ]
+        #p = PointList(y)
     
         
-    def test_assignment(self):
+    #def test_assignment(self):
         
-        p = PointList([Point(1,2,3)])
+        #p = PointList([Point(1,2,3)])
         
         
-        p[0] = Point(3,2,1)
+        #p[0] = Point(3,2,1)
         
-        print p.as_array()
+        #self.assertEqual(p[0], Point(3,2,1))
         
-        self.assertEqual(p[0], Point(3,2,1))
+    #def test_as_array(self):
         
-    def test_as_array(self):
-        
-        x =  np.random.randn(100,3)
-        print x.shape
-        p = PointList(x)
+        #x =  np.random.randn(100,3)
+        #p = PointList(x)
 
-        np.testing.assert_array_equal(x, p.as_array())
+        #np.testing.assert_array_equal(x, p.as_array())
         
     
 
