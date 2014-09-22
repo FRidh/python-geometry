@@ -13,11 +13,11 @@ matrix:
       #- NUMPY_VERSION=1.7
       #- JOB_NAME: "python_27_numpy_17"
     
-    - python: 2.7
-      env:
-      - PYTHON_VERSION=2.7
-      - NUMPY_VERSION=1.8
-      - JOB_NAME: "python_27_numpy_18"
+    #- python: 2.7
+      #env:
+      #- PYTHON_VERSION=2.7
+      #- NUMPY_VERSION=1.8
+      #- JOB_NAME: "python_27_numpy_18"
 
     #- python: 2.7
       #env:
@@ -27,8 +27,8 @@ matrix:
     - python: 2.7
       env:
       - PYTHON_VERSION=3.4
-      - NUMPY_VERSION=1.8
-      - JOB_NAME: "python_34_numpy_18"
+      - NUMPY_VERSION=1.9
+      - JOB_NAME: "python_34_numpy_19"
       
 before_install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
@@ -52,7 +52,6 @@ install:
   - source activate testenv
 #   - conda install --yes 
   #- pip install .
-  - python setup.py build_ext --inplace
   - python setup.py install
   
 script:
