@@ -204,8 +204,6 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         else:
             return False
         
-    
-    
     cpdef Vector cosines_with(self, Point point):
         """
         cosines_with(point)
@@ -213,9 +211,9 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         Cosines of this point with ``point``.
         
         :param point: Point
-        :type point: :class:`Point`
+        :type point: :class:`geometry.point.Point`
         :returns: Vector representing the cosines.
-        :rtype: :class:`Vector`
+        :rtype: :class:`geometry.vector.Vector`
         
         See :func:`cosines`.
         """
@@ -228,7 +226,7 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         Distance between this point and ``point``.
         
         :param point: Other point.
-        :type point: :class:`Point`
+        :type point: :class:`geometry.point.Point`
         :returns: Distance
         :rtype: :class:`double`
         
@@ -244,9 +242,9 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         Mirror point with plane.
         
         :param plane: Plane
-        :type plane: :class:`Plane`
+        :type plane: :class:`geometry.plane.Plane`
         :returns: Mirror point
-        :rtype: :class:`Point`
+        :rtype: :class:`geometry.point.Point`
         
         See :func:`mirror_point()`.
         """
@@ -259,7 +257,7 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         Determine whether this point is on the interior side of ``plane``.
         
         :param plane: Plane
-        :type plane: :class:`Plane`
+        :type plane: :class:`geometry.plane.Plane`
         :returns: +1 when on inside, ...
         :rtype: :class:`int`
         
@@ -275,11 +273,11 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         Determine whether this points can be seen from ``apex``.
         
         :param apex: Apex point
-        :type apex: :class:`Point`
+        :type apex: :class:`geometry.point.Point`
         :param plane_A: Plane :math:`A`.
-        :type plane_A: :class:`Plane`
+        :type plane_A: :class:`geometry.plane.Plane`
         :param plane_W: Plane :math:`W`.
-        :type plane_W: :class:`Plane`
+        :type plane_W: :class:`geometry.plane.Plane`
         :returns: +1...
         :rtype: :class:`int`
         
@@ -294,9 +292,9 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         Return the vector from this point to ``point``.
         
         :param point: Point
-        :type point: :class:`Point`
+        :type point: :class:`geometry.point.Point`
         :returns: Vector from this point to ``point``.
-        :rtype: :class:`Vector`
+        :rtype: :class:`geometry.vector.Vector`
         """
         return Vector(point.x-self.x, point.y-self.y, point.z-self.z)
         
@@ -309,11 +307,11 @@ cpdef Point foot_point(Point point, Plane plane):
     Foot point of point on plane.
     
     :param point: Point
-    :type point: :class:`Point`
+    :type point: :class:`geometry.point.Point`
     :param plane: Plane
-    :type plane: :class:`Plane`
+    :type plane: :class:`geometry.plane.Plane`
     :returns: Foot point
-    :rtype: :class:`Point`
+    :rtype: :class:`geometry.point.Point`
     
     
     See ((6))
@@ -338,11 +336,11 @@ cpdef Point mirror_point(Point point, Point foot_point):
     .. math:: \\mathbf{m} = 2 \\mathbf{f} - \\mathbf{p}
     
     :param point: Point :math:`p`
-    :type point: :class:`Point`
+    :type point: :class:`geometry.point.Point`
     :param foot_point: Foot point :math:`f`
-    :type point: :class:`Point`
+    :type foot_point: :class:`geometry.point.Point`
     :returns: Mirror point :math:`m`
-    :rtype: :class:`Point`
+    :rtype: :class:`geometry.point.Point`
     
     See ((7))
     """
@@ -356,11 +354,11 @@ cpdef Vector cosines(Point a, Point b):
     Cosines of point a with point b.
     
     :param a: Point ``a``.
-    :type a: :class:`Point`
+    :type a: :class:`geometry.point.Point`
     :param b: Point ``b``.
-    :type b: :class:`Point`
+    :type b: :class:`geometry.point.Point`
     :returns: ``cos(alpha), cos(beta), cos(gamma)``
-    :rtype: :class:`Vector`
+    :rtype: :class:`geometry.vector.Vector`
     
     See ((2))
     """
@@ -374,9 +372,9 @@ cpdef int is_point_on_interior_side(Point point, Plane plane):
     Test whether ``point`` is on the interior side of ``plane``.
     
     :param point: Point
-    :type point: :class:`Point`
+    :type point: :class:`geometry.point.Point`
     :param plane: Plane
-    :type plane: :class:`Plane`
+    :type plane: :class:`geometry.plane.Plane`
     :returns: +1 when point is on interior side, 0 when point lies on the plane, and -1 when point is on the exterior side.
     :rtype: :class:`int`
     
@@ -392,13 +390,13 @@ cpdef int is_point_in_field_angle(Point apex, Point point, Polygon polygon_A, Pl
     Test whether the ``point`` P on the surface of plane W lies within the projection of the plane A by ``apex`` on the plane W.
     
     :param apex: Point q
-    :type apex: :class:`Point`
+    :type apex: :class:`geometry.point.Point`
     :param point: Point P
-    :type point: :class:`Point`
+    :type point: :class:`geometry.point.Point`
     :param polygon_A: Polygon A
-    :type polygon_A: :class:`Polygon`
+    :type polygon_A: :class:`geometry.polygon.Polygon`
     :param plane_W: Plane W
-    :type plane_W: :class:`Plane`
+    :type plane_W: :class:`geometry.plane.Plane`
     :returns: +1 or -1.
     :rtype: :class:`int`
     
@@ -440,9 +438,9 @@ cdef double distance(Point a, Point b):
     distance(a, b)
     
     :param a: Point :math:`a`
-    :type a: :class:`Point`
+    :type a: :class:`geometry.point.Point`
     :param b: Point :math:`b`
-    :type b: :class:`Point`
+    :type b: :class:`geometry.point.Point`
     :returns: Distance
     :rtype: :class:`double`
     

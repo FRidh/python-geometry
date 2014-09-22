@@ -11,7 +11,7 @@ cdef class Polygon(object):
 
         self.points = points
         """
-        Points is an iterable containing :class:`Point` objects defining the polygon.
+        Points is an iterable containing :class:`geometry.plane.Point` objects defining the polygon.
         """
         
         self.center = center

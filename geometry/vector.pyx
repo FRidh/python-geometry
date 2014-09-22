@@ -296,7 +296,7 @@ cdef class Vector(object):
         Return a normalized vector.
         
         :returns: Normalized copy of this vector.
-        :rtype: :class:`Vector`
+        :rtype: :class:`geometry.vector.Vector`
         
         """
         return self/self.norm()
@@ -308,7 +308,7 @@ cdef class Vector(object):
         Return angle between this vector and another vector.
         
         :param other: Other vector
-        :type other: :class:`Vector`
+        :type other: :class:`geometry.vector.Vector`
         :returns: Angle
         :rtype: :class:`double`
         
@@ -322,7 +322,7 @@ cdef class Vector(object):
         Cosine between this vector and another vector.
         
         :param vector: Other vector
-        :type vector: :class:`Vector`
+        :type vector: :class:`geometry.vector.Vector`
         :returns: Cosine
         :rtype: :class:`double`
         
@@ -342,7 +342,7 @@ cdef class Vector(object):
         Dot product of this vector with another vector.
         
         :param vector: Other vector
-        :type vector: :class:`Vector`
+        :type vector: :class:`geometry.vector.Vector`
         :returns: Dot product
         :rtype: :class:`double`
         """
@@ -355,9 +355,9 @@ cdef class Vector(object):
         Cross product of this vector with another vector.
         
         :param vector: Other vector
-        :type vector: :class:`Vector`
+        :type vector: :class:`geometry.vector.Vector`
         :returns: Cross product
-        :rtype: :class:`Vector`
+        :rtype: :class:`geometry.vector.Vector`
         """
         return cross(self, vector)
     
@@ -366,6 +366,12 @@ cdef class Vector(object):
         rotate(quat)
         
         Return a copy of this vector but rotated using the given quaternion.
+        
+        :param quat: Rotation quaternion
+        :type quat: :class:`geometry.quat.Quaterion`
+        :returns: Rotated Vector
+        :rtype: :class:`geometry.vector.Vector`
+        
         """
         return quat.rotate(self) 
         
@@ -374,6 +380,12 @@ cdef class Vector(object):
         rotate_inplace(quat)
         
         Returns this vector rotated inplace using the given quaternion.
+        
+        :param quat: Rotation quaternion
+        :type quat: :class:`geometry.quat.Quaterion`
+        :returns: Rotated Vector
+        :rtype: :class:`geometry.vector.Vector`
+        
         """
         return quat.rotate_inplace(self)
     
@@ -396,9 +408,9 @@ cpdef double dot(Vector a, Vector b):
     Dot product of vectors a and b.
     
     :param a: Vector :math:`a`.
-    :type a: :class:`Vector`
+    :type a: :class:`geometry.vector.Vector`
     :param b: Vector :math:`b`.
-    :type b: :class:`Vector`
+    :type b: :class:`geometry.vector.Vector`
     :returns: Dot product
     :rtype: :class:`double`
     
@@ -414,11 +426,11 @@ cpdef Vector cross(Vector a, Vector b):
     cross(a, b)
     
     :param a: Vector :math:`a`.
-    :type a: :class:`Vector`
+    :type a: :class:`geometry.vector.Vector`
     :param b: Vector :math:`b`.
-    :type b: :class:`Vector`
+    :type b: :class:`geometry.vector.Vector`
     :returns: Cross product
-    :rtype: :class:`Vector`
+    :rtype: :class:`geometry.vector.Vector`
     
     Cross product of vectors a and b.
     
@@ -447,9 +459,9 @@ cpdef double cosine_between_vectors(Vector a, Vector b):
     .. math:: \\cos{\\phi} = \\mathbf{a} \\mathbf{b}
     
     :param a: Vector ``a``.
-    :type a: :class:`Vector`
+    :type a: :class:`geometry.vector.Vector`
     :param b: Vector ``b``.
-    :type b: :class:`Vector`
+    :type b: :class:`geometry.vector.Vector`
     :returns: ``cos(phi)``
     :type: :class:`float`
     

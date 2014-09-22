@@ -25,7 +25,7 @@ cdef class Plane(object):
         Normal vector of plane.
         
         :returns: Vector
-        :rtype: :class:`Vector`
+        :rtype: :class:`geometry.vector.Vector`
         
         """
         return Vector(self.a, self.b, self.c)
@@ -37,11 +37,11 @@ cdef class Plane(object):
         Determine the point where a line specified by the points ``a`` and ``b`` intersect this plane.
         
         :param a: Point :math:`a`.
-        :type a: :class:`Point`
+        :type a: :class:`geometry.plane.Point`
         :param b: Point :math:`b`.
-        :type b: :class:`Point`
+        :type b: :class:`geometry.plane.Point`
         :returns: Point
-        :rtype: :class:`Point`
+        :rtype: :class:`geometry.plane.Point`
         
         See :func:`intersection_point`.
         
@@ -55,9 +55,9 @@ cdef class Plane(object):
         Test whether the line given by the points intersects this plane.
         
         :param a: Point :math:`a`.
-        :type a: :class:`Point`
+        :type a: :class:`geometry.plane.Point`
         :param b: Point :math:`b`
-        :type b: :class:`Point`
+        :type b: :class:`geometry.plane.Point`
         :returns: +1 when...
         :rtype: :class:`int`
         
@@ -101,9 +101,9 @@ cdef class Plane(object):
         Create a plane object using a normal vector.
         
         :param normal: Normal vector
-        :type normal :class:`Vector`
+        :type normal :class:`geometry.vector.Vector`
         :returns: Plane
-        :rtype: :class:`Plane`
+        :rtype: :class:`geometry.plane.Plane`
         
         """
         return cls(normal.x, normal.y, normal.z, 0.0)
@@ -134,11 +134,11 @@ def normal_form(Point a, Point b, Point c):
     Normal form of plane.
     
     :param a: Point a
-    :type a: :class:`Point`
+    :type a: :class:`geometry.plane.Point`
     :param b: Point b
-    :type b: :class:`Point`
+    :type b: :class:`geometry.plane.Point`
     :param c: Point c
-    :type c: :class:`Point`
+    :type c: :class:`geometry.plane.Point`
     :returns: Normal form of plane.
     :rtype: :class:`tuple`
     
@@ -197,13 +197,13 @@ cpdef Point intersection_point(Plane plane, Point a, Point b):
     Intersection point of a straight line through two points with a plane.
     
     :param plane: Plane
-    :type plane: :class:`Plane`
+    :type plane: :class:`geometry.plane.Plane`
     :param a: Point a
-    :type a: :class:`Point`
+    :type a: :class:`geometry.plane.Point`
     :param b: Point b
-    :type b: :class:`Point`
+    :type b: :class:`geometry.plane.Point`
     :returns: Intersection point.
-    :rtype: :class:`Point`
+    :rtype: :class:`geometry.plane.Point`
     
     
     See ((9))
@@ -239,11 +239,11 @@ cpdef int intersects(Plane plane, Point a, Point b):
     Test whether the plane ``plane`` is intersected by the line given by the points ``a`` and ``b``.
     
     :param plane: Plane
-    :type plane: :class:`Plane`
+    :type plane: :class:`geometry.plane.Plane`
     :param a: Point a
-    :type a: :class:`Point`
+    :type a: :class:`geometry.plane.Point`
     :param b: Point b
-    :type b: :class:`Point`
+    :type b: :class:`geometry.plane.Point`
     :returns: +1 for a point intersection, 0 when there is no intersection and -1 for a line intersection.
     :rtype: :class:`int`
 

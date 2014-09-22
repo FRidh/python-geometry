@@ -4,6 +4,10 @@ import math
 
 
 cdef class Quat(object):
+    """Quaternion.
+    
+    
+    """
     
     def __cinit__(self, double w, double x, double y, double z):
         
@@ -101,6 +105,9 @@ cdef class Quat(object):
         
         Norm.
         
+        :returns: Norm.
+        :rtype: :class:`double`
+        
         """
         return abs(self)
     
@@ -109,6 +116,9 @@ cdef class Quat(object):
         normalize()
         
         Normalize this quaternion in-place.
+        
+        :returns: This quaternion normalized.
+        :rtype: :class:`geometry.quat.Quat`
         """
         self.w, self.x, self.y, self.z = self.normalized()
         
@@ -118,6 +128,10 @@ cdef class Quat(object):
         normalize()
         
         Normalized copy of this quaternion.
+        
+        :returns: Normalized copy.
+        :rtype: :class:`geometry.quat.Quat`
+        
         """
         return self / self.norm()
     
@@ -128,6 +142,9 @@ cdef class Quat(object):
         
         Conjugate.
         
+        :returns: Conjugate
+        :rtype: :class:`geometry.quat.Quat`
+        
         """
         return Quat(self.w, -self.x, -self.y, -self.z)
         
@@ -137,6 +154,10 @@ cdef class Quat(object):
         inverse()
         
         Inverse.
+        
+        :returns: Inverse
+        :rtype: :class:`geometry.quat.Quat`
+        
         """
         return self.conjugate() / self.dot(self)
     
@@ -146,12 +167,21 @@ cdef class Quat(object):
         
         Dot product.
         
+        :param other: Other quaternion.
+        :type other: :class:`geometry.quat.Quat`
+        :returns: Conjugate
+        :rtype: :class:`geometry.quat.Quat`
+        
         """
         return self.w*other.w + self.x*other.x + self.y+other.y +self.z*other.z
         
     cpdef tuple to_angle_and_axis(self):
         """
         to_angle_and_axis()
+        
+        :returns: A tuple consisting of a float and a vector, representing respectively the angle and axis.
+        :rtype: tuple
+        
         """
         if not self.unit():
             raise ValueError("Quaternion is not a unit quaternion.")
@@ -167,6 +197,12 @@ cdef class Quat(object):
         rotate()
         
         Rotate vector using this quaternion.
+        
+        :param v: Vector
+        :type v: :class:`geometry.vector.Vector`
+        :returns: Rotated vector.
+        :rtype: :class:`geometry.vector.Vector`
+        
         """
         if not self.unit():
             raise ValueError("Quaternion is not a unit quaternion.")
@@ -191,6 +227,12 @@ cdef class Quat(object):
         rotate_inplace(v)
         
         Rotate vector inplace using this quaternion.
+        
+        :param v: Vector
+        :type v: :class:`geometry.vector.Vector`
+        :returns: Rotated vector.
+        :rtype: :class:`geometry.vector.Vector`
+        
         """
         v.x, v.y, v.z = self.rotate(v)
         return v
