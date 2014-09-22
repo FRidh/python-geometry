@@ -48,7 +48,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 
 install:
-  - conda create -n testenv python=$PYTHON_VERSION numpy=$NUMPY_VERSION cython pytest
+  - conda create -n testenv python=$PYTHON_VERSION numpy=$NUMPY_VERSION cython pytest setuptools
   - source activate testenv
 #   - conda install --yes 
   #- pip install .
