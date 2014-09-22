@@ -38,7 +38,7 @@ cdef class Vector(object):
             return Vector(self.x+other.x, self.y+other.y, self.z+other.z)
         elif isinstance(self, Vector) and isinstance(other, numbers.Real):
             return Vector(self.x+other, self.y+other, self.z+other)
-        elif isinstance(self, numbers.Real) and isinstance(self, Vector):
+        elif isinstance(self, numbers.Real) and isinstance(other, Vector):
             return Vector(other.x+self, other.y+self, other.z+self)
         else:
             return NotImplemented
@@ -49,7 +49,7 @@ cdef class Vector(object):
             return Vector(self.x-other.x, self.y-other.y, self.z-other.z)
         elif isinstance(self, Vector) and isinstance(other, numbers.Real):
             return Vector(self.x-other, self.y-other, self.z-other)
-        elif isinstance(self, numbers.Real) and isinstance(self, Vector):
+        elif isinstance(self, numbers.Real) and isinstance(other, Vector):
             return Vector(other.x-self, other.y-self, other.z-self)
         else:
             return NotImplemented
@@ -59,16 +59,16 @@ cdef class Vector(object):
         if isinstance(self, Vector) and isinstance(other, Vector):
             return self.x*other.x + self.y*other.y + self.z*other.z
         elif isinstance(self, Vector) and isinstance(other, numbers.Real):
-            return Vector(self.x-other, self.y-other, self.z-other)
-        elif isinstance(self, numbers.Real) and isinstance(self, Vector):
-            return Vector(other.x-self, other.y-self, other.z-self)
+            return Vector(self.x*other, self.y*other, self.z*other)
+        elif isinstance(self, numbers.Real) and isinstance(other, Vector):
+            return Vector(other.x*self, other.y*self, other.z*self)
         else:
             return NotImplemented
         
-    def __div__(self, other):
+    def __truediv__(self, other):
         if isinstance(self, Vector) and isinstance(other, numbers.Real):
             return Vector(self.x/other, self.y/other, self.z/other)
-        elif isinstance(self, numbers.Real) and isinstance(self, Vector):
+        elif isinstance(self, numbers.Real) and isinstance(other, Vector):
             return Vector(other.x/self, other.y/self, other.z/self)
         else:
             return NotImplemented
@@ -78,7 +78,7 @@ cdef class Vector(object):
     def __mod__(self, other):
         if isinstance(self, Vector) and isinstance(other, numbers.Real):
             return Vector(self.x%other, self.y%other, self.z%other)
-        elif isinstance(self, numbers.Real) and isinstance(self, Vector):
+        elif isinstance(self, numbers.Real) and isinstance(other, Vector):
             return Vector(other.x%self, other.y%self, other.z%self)
         else:
             return NotImplemented
