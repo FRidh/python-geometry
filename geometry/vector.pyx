@@ -1,5 +1,5 @@
-
-
+import math
+import numbers
 
 cdef class Vector(object):
     """

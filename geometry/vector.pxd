@@ -2,8 +2,7 @@
 from .point cimport Point
 from .quat cimport Quat
 from libc.math cimport sqrt, acos
-import math
-import numbers.Real
+
 
 cdef class Vector(object):
     
