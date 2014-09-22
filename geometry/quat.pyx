@@ -91,6 +91,13 @@ cdef class Quat(object):
     def __bool__(self):
         return (self.w==0.0 and self.x==0.0 and self.y==0.0 and self.z==0.0)
     
+    def __repr__(self):
+        return "Quat({}, {}, {}, {})".format(self.w, self.x, self.y, self.z)
+    
+    def __str__(self):
+        return "({}, {}, {}, {})".format(self.w, self.x, self.y, self.z)
+    
+    
     cpdef bint unit(self):
         """
         unit()
