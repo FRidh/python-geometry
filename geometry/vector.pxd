@@ -1,6 +1,7 @@
 
 from .point cimport Point
 from libc.math cimport sqrt, acos
+import math
 import numbers.Real
 
 cdef class Vector(object):
@@ -15,6 +16,7 @@ cdef class Vector(object):
     cpdef int argmin(Vector)
     cpdef int argmax(Vector)
     
+    cpdef bint unit(Vector)
     cpdef double norm(Vector)
     cpdef Vector normalize(Vector)
     

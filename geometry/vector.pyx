@@ -159,6 +159,9 @@ cdef class Vector(object):
     
     __hash__ = None
     
+    def __bool__(self):
+        return (self.x==0.0 and self.y==0.0 and self.z==0.0)
+    
     def __iter__(self):
         yield self.x
         yield self.y
@@ -262,6 +265,15 @@ cdef class Vector(object):
             return 1
         else:
             return 2
+    
+    cpdef bint unit(self):
+        """
+        unit()
+        
+        Return whether this vector is a unit vector or not.
+        """
+        return self.norm()==1.0
+    
     
     cpdef double norm(self):
         """
