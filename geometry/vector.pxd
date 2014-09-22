@@ -1,5 +1,6 @@
 
 from .point cimport Point
+from .quat cimport Quat
 from libc.math cimport sqrt, acos
 import math
 import numbers.Real
@@ -26,6 +27,9 @@ cdef class Vector(object):
     cpdef Vector cross(Vector, Vector)
     
     cpdef double cosines_with(Vector, Vector)
+    
+    cpdef Vector rotate(Vector, Quat)
+    cpdef Vector rotate_inplace(Vector, Quat)
     
     
 cpdef double dot(Vector a, Vector b)

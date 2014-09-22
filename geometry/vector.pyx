@@ -361,6 +361,22 @@ cdef class Vector(object):
         """
         return cross(self, vector)
     
+    cpdef Vector rotate(self, Quat quat):
+        """
+        rotate(quat)
+        
+        Return a copy of this vector but rotated using the given quaternion.
+        """
+        return quat.rotate(self) 
+        
+    cpdef Vector rotate_inplace(self, Quat quat):
+        """
+        rotate_inplace(quat)
+        
+        Returns this vector rotated inplace using the given quaternion.
+        """
+        return quat.rotate_inplace(self)
+    
     @classmethod
     def from_points(cls, point_a, point_b):
         """
