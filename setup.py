@@ -1,10 +1,9 @@
 import os, subprocess
-from distutils.core import setup
-from distutils.extension import Extension
-from Cython.Distutils import build_ext
+from setuptools import setup, Command
 import numpy as np
-from distutils.cmd import Command
-from distutils.command.build import build
+from Cython.Build import cythonize
+#from distutils.cmd import Command
+#from distutils.command.build import build
 
 
 CLASSIFIERS = [
@@ -119,36 +118,37 @@ class write_version_file(Command):
 FULLVERSION, GIT_REVISION = get_version_info()
 
 
-core = Extension(
-    'geometry.core',            
-    [os.path.join("geometry", "core.pyx")],     
-    language='c++',         
-    libraries=['stdc++'],
-    include_dirs = ['.'],  
-    )
+#core = Extension(
+    #'geometry.core',            
+    #[os.path.join("geometry", "core.pyx")],     
+    #language='c++',         
+    #libraries=['stdc++'],
+    #include_dirs = ['.'],  
+    #)
 
-CMDCLASS = {'build' : build,
-            'build_ext': build_ext,
-            'write_version'  : write_version_file,
-            }
+#CMDCLASS = {'build' : build,
+            #'build_ext': build_ext,
+            #'write_version'  : write_version_file,
+            #}
 
 
 setup(
     name='geometry',
-    version='0.1',
+    version='0.2',
     author='Frederik Rietdijk',
     author_email='fridh@fridh.nl',
     description='Python Geometry',
     long_description=open('README.md').read(),
     url="https://github.com/FRidh/python-geometry",
     download_url="",
-    ext_modules = [core],
+    ext_modules = cythonize('geometry/*.pyx'),
     data_files=[],
     license='BSD',
     platforms = ['any'],
     classifiers=CLASSIFIERS,
     packages=['geometry'],
-    cmdclass = CMDCLASS,
+    #cmdclass = CMDCLASS,
+    zip_safe=False,
     include_dirs = [np.get_include()],  
 
 )
