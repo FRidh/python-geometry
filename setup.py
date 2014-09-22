@@ -147,6 +147,10 @@ setup(
     platforms = ['any'],
     classifiers=CLASSIFIERS,
     packages=['geometry'],
+    install_requires=[
+        'numpy',
+        'cython',
+        ],
     #cmdclass = CMDCLASS,
     zip_safe=False,
     include_dirs = [np.get_include()],  
