@@ -19,6 +19,7 @@ cdef class Vector(object):
     cpdef bint unit(Vector)
     cpdef double norm(Vector)
     cpdef Vector normalize(Vector)
+    cpdef Vector normalized(Vector)
     
     cpdef double angle(Vector, Vector)
     
