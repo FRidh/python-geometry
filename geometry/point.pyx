@@ -292,13 +292,14 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         to(point)
         
         Return the vector from this point to ``point``.
+        This is the same as subtracting this point from another point.
         
         :param point: Point
         :type point: :class:`geometry.point.Point`
         :returns: Vector from this point to ``point``.
         :rtype: :class:`geometry.vector.Vector`
         """
-        return Vector(point.x-self.x, point.y-self.y, point.z-self.z)
+        return point - self #Vector(point.x-self.x, point.y-self.y, point.z-self.z)
         
         
 
