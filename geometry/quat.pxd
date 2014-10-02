@@ -19,3 +19,6 @@ cdef class Quat(object):
     cpdef tuple to_angle_and_axis(Quat)
     cpdef Vector rotate(Quat, Vector)
     cpdef Vector rotate_inplace(Quat, Vector)
+    
+
+cpdef Quat quat_from_angle_and_axis(double, Vector)

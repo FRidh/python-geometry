@@ -2,6 +2,7 @@
 import numbers
 import math
 
+PRECISION = 1.0e-12
 
 cdef class Quat(object):
     """Quaternion.
@@ -42,10 +43,12 @@ cdef class Quat(object):
         else:
             return NotImplemented
     
-    def __div__(self, other):
-        if isinstance(self, Quat) and isinstance(self, numbers.Real):
+    def __truediv__(self, other):
+        if isinstance(self, Quat) and isinstance(other, numbers.Real):
             return Quat(self.w/other, self.x/other, self.y/other, self.z/other)
-    
+        else:
+            return NotImplemented
+        
     def __pos__(self):
         return Quat(+self.w, +self.x, +self.y, +self.z)
     
@@ -64,7 +67,7 @@ cdef class Quat(object):
         yield self.y
         yield self.z
         
-    def __getitem__(self, key):
+    def __getitem__(self, int key):
         if key==0:
             return self.w
         elif key==1:
@@ -76,7 +79,7 @@ cdef class Quat(object):
         else:
             raise IndexError
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, int key, double value):
         if key==0:
             self.w = value
         elif key==1:
@@ -98,13 +101,35 @@ cdef class Quat(object):
         return "({}, {}, {}, {})".format(self.w, self.x, self.y, self.z)
     
     
+    def __richcmp__(self, other, int op):
+        """
+        Comparison methods.
+        """
+        cdef int equal
+        
+        # Check whether the comparison method has been defined.
+        if op==2 or op==3:
+            if not isinstance(other, Quat):
+                return False
+            else:
+                # Determine whether the attributes are equal.
+                equal = True if (self.w==other.w and self.x==other.x and self.y==other.y and self.z==other.z) else False
+                if (op==2 and equal==True) or (op==3 and equal==False): # a == b
+                    return True
+                else:
+                    return False
+        else:
+            return NotImplemented
+    
+        
+    
     cpdef bint unit(self):
         """
         unit()
 
         Whether this is a unit quaternion or not.
         """
-        return self.norm()==1.0
+        return abs(self.norm() - 1.0) < PRECISION
 
     cpdef double norm(self):
         """
@@ -190,6 +215,8 @@ cdef class Quat(object):
         :rtype: tuple
         
         """
+        cdef double angle
+        cdef Vector axis
         if not self.unit():
             raise ValueError("Quaternion is not a unit quaternion.")
         else:
@@ -211,23 +238,27 @@ cdef class Quat(object):
         :rtype: :class:`geometry.vector.Vector`
         
         """
+        cdef double ww = self.w*self.w
+        cdef double xx = self.x*self.x
+        cdef double yy = self.y*self.y
+        cdef double zz = self.z*self.z
+        cdef double wx = self.w*self.x
+        cdef double wy = self.w*self.y
+        cdef double wz = self.w*self.z
+        cdef double xy = self.x*self.y
+        cdef double xz = self.x*self.z
+        cdef double yz = self.y*self.z
+        cdef Vector vector
         if not self.unit():
             raise ValueError("Quaternion is not a unit quaternion.")
         else:
-            ww = self.w*self.w
-            xx = self.x*self.x
-            yy = self.y*self.y
-            zz = self.z*self.z
-            wx = self.w*self.x
-            wy = self.w*self.y
-            wz = self.w*self.z
-            xy = self.x*self.y
-            xz = self.x*self.z
-            yz = self.y*self.z
-
-            return Vector(ww*v.x + xx*v.x - yy*v.x - zz*v.x + 2.0*((xy-wz)*v.y + (xz+wy)*v.z),
-                          ww*v.y - xx*v.y + yy*v.y - zz*v.y + 2.0*((xy+wz)*v.x + (yz-wx)*v.z),
-                          ww*v.z - xx*v.z - yy*v.z + zz*v.z + 2.0*((xz-wy)*v.x + (yz+wx)*v.y))
+            vector = Vector(ww*v.x + xx*v.x - yy*v.x - zz*v.x + 2.0*((xy-wz)*v.y + (xz+wy)*v.z),
+                            ww*v.y - xx*v.y + yy*v.y - zz*v.y + 2.0*((xy+wz)*v.x + (yz-wx)*v.z),
+                            ww*v.z - xx*v.z - yy*v.z + zz*v.z + 2.0*((xz-wy)*v.x + (yz+wx)*v.y))
+            vector.x = 0.0 if abs(vector.x) < PRECISION else vector.x
+            vector.y = 0.0 if abs(vector.y) < PRECISION else vector.y
+            vector.z = 0.0 if abs(vector.z) < PRECISION else vector.z
+            return vector
         
     cpdef Vector rotate_inplace(self, Vector v):
         """
@@ -263,4 +294,26 @@ cdef class Quat(object):
             
         
         
+cpdef Quat quat_from_angle_and_axis(double angle, Vector axis):
+    """
+    from_angle_and_axis()
     
+    Construct quaternion given an angle and axis.
+    
+    .. note:: While this function does the same as the classmethod :meth:`Quat.from_angle_and_axis` this function is implemented as a cpdef function.
+    """
+    cdef double w
+    cdef double s
+    cdef double x
+    cdef double y
+    cdef double z
+    if not axis:
+        return Quat(1.0, 0.0, 0.0, 0.0)
+    else:
+        axis = axis.normalized()
+        angle /= 2.0
+        w = math.cos(angle)
+        s = math.sin(angle) / axis.norm()
+        x, y, z = axis * s
+        return Quat(w, x, y, z).normalized()
+            
