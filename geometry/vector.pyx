@@ -1,6 +1,9 @@
 import math
 import numbers
 
+PRECISION = 1.0e-12
+
+
 cdef class Vector(object):
     """
     Vector in Cartesian coordinate system.
@@ -160,7 +163,7 @@ cdef class Vector(object):
     __hash__ = None
     
     def __bool__(self):
-        return (self.x==0.0 and self.y==0.0 and self.z==0.0)
+        return not (self.x==0.0 and self.y==0.0 and self.z==0.0)
     
     def __iter__(self):
         yield self.x
@@ -272,7 +275,7 @@ cdef class Vector(object):
         
         Return whether this vector is a unit vector or not.
         """
-        return self.norm()==1.0
+        return abs(self.norm() - 1.0) < PRECISION
     
     
     cpdef double norm(self):
@@ -300,6 +303,19 @@ cdef class Vector(object):
         
         """
         return self/self.norm()
+    
+    cpdef Vector normalized(self):
+        """
+        normalized()
+        
+        Return a this vector normalized in-place.
+        
+        :returns: Normalized copy of this vector.
+        :rtype: :class:`geometry.vector.Vector`
+        
+        """
+        self.x, self.y, self.z = self.normalize()
+        return self
     
     cpdef double angle(self, Vector other):
         """
