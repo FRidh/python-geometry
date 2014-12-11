@@ -17,12 +17,11 @@ cdef class Polygon(object):
         self.center = center
 
     def __repr__(self):
-        return "Polygon({})".format(str(self.plane()))
-        #return "Polygon({}, {}, {}, {})".format(self.plane().a, self.points[1], self.points[2])
-    
+        return "Polygon({})".format(str(self))
+        
     def __str__(self):
-        return str(self.plane())
-    
+        return str(self.points)
+        
     cpdef Plane plane(self):
         """
         Return the plane of this polygon.
