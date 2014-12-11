@@ -14,7 +14,7 @@ CLASSIFIERS = [
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 3 :: Only'
         'Programming Language :: Cython',
         'Topic :: Scientific/Engineering',
         ]
