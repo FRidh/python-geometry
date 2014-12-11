@@ -390,7 +390,7 @@ cpdef int is_point_in_field_angle(Point apex, Point point, Polygon polygon_A, Pl
     """
     is_point_in_field_angle(apex, point, polygon_A, plane_W
     
-    Test whether the ``point`` P on the surface of plane W lies within the projection of the plane A by ``apex`` on the plane W.
+    Test whether the ``point`` P on the surface of plane W lies within the projection of the polygon A by ``apex`` on the plane W.
     
     :param apex: Point q
     :type apex: :class:`geometry.point.Point`
@@ -400,7 +400,7 @@ cpdef int is_point_in_field_angle(Point apex, Point point, Polygon polygon_A, Pl
     :type polygon_A: :class:`geometry.polygon.Polygon`
     :param plane_W: Plane W
     :type plane_W: :class:`geometry.plane.Plane`
-    :returns: +1 or -1.
+    :returns: +1 or 0.
     :rtype: :class:`int`
     
     
@@ -430,8 +430,8 @@ cpdef int is_point_in_field_angle(Point apex, Point point, Polygon polygon_A, Pl
         b = points_F[(i+1)%items]   # Second point of plane F
         
         #print("Triangle {} - a {} - b {} - apex {}".format(i, a, b, apex))
-        if point.on_interior_side_of(Plane.from_points([a, b, apex])) == -1: # Check whether point P lies within the plane defined by two points of F and the apex.
-            return -1    # If that's not the case, then our field angle test fails.
+        if point.on_interior_side_of(Plane.from_points([a, b, apex])) == -1: # Check whether point P lies on the outside of the plane defined by two points of F and the apex.
+            return 0    # If that's the case, then the point is not in the field angle and the test fails
     return 1
     
  
