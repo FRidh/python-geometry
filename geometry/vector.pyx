@@ -298,6 +298,8 @@ cdef class Vector(object):
         
         Return a normalized vector.
         
+        .. math:: \\frac{\\mathbf{x}}{|\\mathbf{x}|}
+        
         :returns: Normalized copy of this vector.
         :rtype: :class:`geometry.vector.Vector`
         
@@ -309,6 +311,8 @@ cdef class Vector(object):
         normalized()
         
         Return a this vector normalized in-place.
+        
+        .. math:: \\frac{\\mathbf{x}}{|\\mathbf{x}|}
         
         :returns: Normalized copy of this vector.
         :rtype: :class:`geometry.vector.Vector`
@@ -322,6 +326,8 @@ cdef class Vector(object):
         angle(other)
         
         Return angle between this vector and another vector.
+        
+        .. math:: \\theta = \\arccos{\\frac{\\mathbf{x}\cdot\\mathbf{y}}{|\\mathbf{x}| |\\mathbf{y}|}}
         
         :param other: Other vector
         :type other: :class:`geometry.vector.Vector`
