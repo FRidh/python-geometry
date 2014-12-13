@@ -1,7 +1,7 @@
 DOCS=docs
 
-compile:	
-	python setup.py build_ext --inplace
+develop:	
+	python setup.py develop
 
 documentation:	
 	cd ${DOCS}; make html
