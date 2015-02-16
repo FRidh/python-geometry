@@ -282,15 +282,16 @@ cdef class Quat(object):
         
         Construct quaternion given an angle and axis.
         """
-        if not axis:
-            return cls(1.0, 0.0, 0.0, 0.0)
-        else:
-            axis = axis.normalized()
-            angle /= 2.0
-            w = math.cos(angle)
-            s = math.sin(angle) / axis.norm()
-            x, y, z = axis * s
-            return cls(w, x, y, z).normalized()
+        return quat_from_angle_and_axis(angle, axis) # Troublesome when subclassing
+        #if not axis:
+            #return cls(1.0, 0.0, 0.0, 0.0)
+        #else:
+            #axis = axis.normalized()
+            #angle /= 2.0
+            #w = math.cos(angle)
+            #s = math.sin(angle) / axis.norm()
+            #x, y, z = axis * s
+            #return cls(w, x, y, z).normalized()
             
         
         
