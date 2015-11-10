@@ -1,5 +1,5 @@
 import os, subprocess
-from setuptools import setup, Command
+from setuptools import setup, Command, find_packages
 import numpy as np
 from Cython.Build import cythonize
 #from distutils.cmd import Command
@@ -153,6 +153,7 @@ setup(
         ],
     #cmdclass = CMDCLASS,
     zip_safe=False,
-    include_dirs = [np.get_include()],  
-
+    include_dirs = [np.get_include()],
+    tests_require=['pytest'],
+    packages=find_packages(exclude=["tests"]),
 )
