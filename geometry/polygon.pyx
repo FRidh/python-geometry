@@ -3,18 +3,14 @@ cdef class Polygon(object):
     """
     3D Polygon defined by points.
     """
-    
-    #cdef public list points
-    #cdef public Point center
 
-    def __cinit__(self, list points, Point center):
-
-        self.points = points
+    def __cinit__(self, *args, **kwargs):
+        self.points = args[0]
         """
         Points is an iterable containing :class:`geometry.plane.Point` objects defining the polygon.
         """
-        
-        self.center = center
+
+        self.center = args[1]
 
     def __repr__(self):
         return "Polygon({})".format(str(self))
