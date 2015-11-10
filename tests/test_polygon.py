@@ -27,6 +27,10 @@ def test_intersection():
 
     assert intersection == Point(0.5, 0.5, 0.0)
 
+def test_mirror(polygon):
+
+    assert polygon.mirror().points == polygon.points[::-1]
+
 def test_pickle(polygon):
 
     with tempfile.TemporaryDirectory() as tmpdirname:

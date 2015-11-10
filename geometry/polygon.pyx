@@ -57,6 +57,11 @@ cdef class Polygon(object):
         else:
             return False
 
+    cpdef Polygon mirror(self):
+        """Mirror the polygon.
+        """
+        return Polygon(self.points[::-1], self.center)
+
     #cpdef Point center(self):
         #"""
         #Center of the polygon.

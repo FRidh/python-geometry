@@ -8,3 +8,4 @@ cdef class Polygon(object):
     cdef public list points
     cpdef Plane plane(Polygon)
     cpdef double area(Polygon)
+    cpdef Polygon mirror(Polygon)
