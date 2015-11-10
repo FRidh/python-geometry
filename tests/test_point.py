@@ -1,6 +1,8 @@
 import pytest
 import numpy as np
-        
+import tempfile
+from math import sqrt
+import pickle
 from geometry import Point, Vector, Plane, Polygon
 
 @pytest.fixture
@@ -60,6 +62,18 @@ def test_on_interior_side(a, b, c, d):
     assert b.on_interior_side_of(plane) == +1   # Interior side
     assert c.on_interior_side_of(plane) ==  0   # In plane
     assert d.on_interior_side_of(plane) == -1   # Exterior side
+
+def test_pickle(a):
+
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        with open('obj.pickle', mode='w+b') as f:
+            pickle.dump(a, f)
+
+        with open('obj.pickle', mode='r+b') as f:
+            a2 = pickle.load(f)
+
+        assert a2 == a
+
 
 ##class PointInFieldAngleCase(unittest.TestCase):
     

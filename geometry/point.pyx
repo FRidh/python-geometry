@@ -36,7 +36,7 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
     Z-direction
     """
     
-    def __init__(self, double x, double y, double z):
+    def __cinit__(self, double x, double y, double z):
         
         self.x = x
         self.y = y
@@ -183,6 +183,8 @@ cdef class Point(object):  # Iterable, so you can unpack it like a tuple. Just s
         yield self.y
         yield self.z
     
+    def __getnewargs__(self):
+        return (self.x, self.y, self.z)
     
     def __richcmp__(self, other, int op):
         """

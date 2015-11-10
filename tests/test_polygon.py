@@ -1,5 +1,7 @@
 import pytest
 from geometry import Polygon, Point, Plane, Vector
+import tempfile
+import pickle
 
 
 @pytest.fixture
@@ -24,3 +26,14 @@ def test_intersection():
     intersection = polygon.plane().intersection(a, b)
 
     assert intersection == Point(0.5, 0.5, 0.0)
+
+def test_pickle(polygon):
+
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        with open('obj.pickle', mode='w+b') as f:
+            pickle.dump(polygon, f)
+
+        with open('obj.pickle', mode='r+b') as f:
+            polygon2 = pickle.load(f)
+
+        assert polygon2 == polygon

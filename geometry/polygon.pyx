@@ -7,7 +7,7 @@ cdef class Polygon(object):
     #cdef public list points
     #cdef public Point center
 
-    def __init__(self, list points, Point center):
+    def __cinit__(self, list points, Point center):
 
         self.points = points
         """
@@ -22,6 +22,9 @@ cdef class Polygon(object):
     def __str__(self):
         return str(self.points)
         
+    def __getnewargs__(self):
+        return (self.points, self.center)
+
     cpdef Plane plane(self):
         """
         Return the plane of this polygon.

@@ -11,12 +11,41 @@ cdef class Plane(object):
     #cdef public double c
     #cdef public double d
     
-    def __init__(self, double a, double b, double c, double d):
+    def __cinit__(self, double a, double b, double c, double d):
 
         self.a = a
         self.b = b
         self.c = c
         self.d = d
+
+    def __repr__(self):
+        return "{}({}, {}, {}, {})".format(type(self), self.a, self.b, self.c, self.d)
+
+    def __str__(self):
+        return "({}, {}, {}, {})".format(self.a, self.b, self.c, self.d)
+
+    def __richcmp__(self, other, op):
+
+        cdef int equal
+
+        """Check whether the comparison method has been defined."""
+        if not(op==2 or op==3):
+            raise TypeError()
+
+        """To possibly be true, the other object has to be a Plane as well."""
+        if not isinstance(other, Plane):
+            return False
+
+        """Determine whether the attributes are equal."""
+        equal = True if (self.a == other.a and self.b == other.b and self.c == other.c and self.d == other.d) else False
+
+        if (op==2 and equal==True) or (op==3 and equal==False): # a == b
+            return True
+        else:
+            return False
+
+    def __getnewargs__(self):
+        return (self.a, self.b, self.c, self.d)
 
     cpdef Vector normal(self):
         """
@@ -65,33 +94,7 @@ cdef class Plane(object):
         
         """
         return intersects(self, a, b)
-    
-    
-    def __repr__(self):
-        return "{}({}, {}, {}, {})".format(type(self), self.a, self.b, self.c, self.d)
-    
-    def __str__(self):
-        return "({}, {}, {}, {})".format(self.a, self.b, self.c, self.d)
-    
-    def __richcmp__(self, other, op):
-        
-        cdef int equal
-        
-        """Check whether the comparison method has been defined."""
-        if not(op==2 or op==3):
-            raise TypeError()
-        
-        """To possibly be true, the other object has to be a Plane as well."""
-        if not isinstance(other, Plane):
-            return False
-        
-        """Determine whether the attributes are equal."""
-        equal = True if (self.a == other.a and self.b == other.b and self.c == other.c and self.d == other.d) else False
-        
-        if (op==2 and equal==True) or (op==3 and equal==False): # a == b
-            return True
-        else:
-            return False
+
         
     @classmethod
     def from_normal(cls, normal):

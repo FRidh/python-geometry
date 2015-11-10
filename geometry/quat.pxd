@@ -1,4 +1,3 @@
-
 from libc.math cimport atan2, sqrt
 from .vector cimport Vector
 

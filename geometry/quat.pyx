@@ -120,9 +120,10 @@ cdef class Quat(object):
                     return False
         else:
             return NotImplemented
-    
-        
-    
+
+    def __getnewargs__(self):
+        return (self.w, self.x, self.y, self.z)
+
     cpdef bint unit(self):
         """
         unit()

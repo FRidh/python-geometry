@@ -1,4 +1,6 @@
 import pytest
+import tempfile
+import pickle
 from geometry import Plane, Point, Polygon, Vector
 
 
@@ -40,3 +42,15 @@ def test_intersection():
     intersection = polygon.plane().intersection(mirror, Point(1.0, 0.0, 0.0))
 
     assert intersection == Point(0.5, -0.5, -0.5)
+
+def test_pickle():
+    a = Plane(0.0, 0.0, 1.0, -0.9)
+
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        with open('obj.pickle', mode='w+b') as f:
+            pickle.dump(a, f)
+
+        with open('obj.pickle', mode='r+b') as f:
+            a2 = pickle.load(f)
+
+        assert a2 == a

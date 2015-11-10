@@ -1,6 +1,7 @@
 import pytest
 import numpy as np
-import operator
+import pickle
+import tempfile
 from geometry import Vector
 
 @pytest.fixture
@@ -76,3 +77,15 @@ def test_cosines_with(b, c):
 
     assert b.cosines_with(c) == 0.0 # Vectors are orthogonal, so cos(90)=0
     assert b.cosines_with(b) == 1.0 # Vectors are parallel
+
+def test_pickle(a):
+
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        with open('obj.pickle', mode='w+b') as f:
+            pickle.dump(a, f)
+
+        with open('obj.pickle', mode='r+b') as f:
+            a2 = pickle.load(f)
+
+        assert a2 == a
+

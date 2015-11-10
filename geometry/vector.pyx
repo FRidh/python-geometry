@@ -22,7 +22,7 @@ cdef class Vector(object):
     Z-direction
     """
     
-    def __init__(self, double x, double y, double z):
+    def __cinit__(self, double x, double y, double z):
         
         self.x = x
         self.y = y
@@ -172,6 +172,9 @@ cdef class Vector(object):
     
     #def __ne__(self, other):   # must use richcmp
         #return not (self==other)
+
+    def __getnewargs__(self):
+        return (self.x, self.y, self.z)
     
     def __richcmp__(self, other, int op):
         """
