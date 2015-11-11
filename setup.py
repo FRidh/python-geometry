@@ -146,7 +146,7 @@ setup(
     license='BSD',
     platforms = ['any'],
     classifiers=CLASSIFIERS,
-    packages=['geometry'],
+    packages=find_packages(exclude=["tests"]),
     install_requires=[
         'numpy',
         'cython',
@@ -155,5 +155,4 @@ setup(
     zip_safe=False,
     include_dirs = [np.get_include()],
     tests_require=['pytest'],
-    packages=find_packages(exclude=["tests"]),
 )
