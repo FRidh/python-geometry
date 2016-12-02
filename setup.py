@@ -1,5 +1,6 @@
-import os, subprocess
+import os, subprocess, sys
 from setuptools import setup, Command, find_packages
+from setuptools.command.test import test as TestCommand
 import numpy as np
 from Cython.Build import cythonize
 #from distutils.cmd import Command
@@ -10,7 +11,6 @@ CLASSIFIERS = [
         'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
-        'Intended Audience :: Education',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
@@ -25,6 +25,16 @@ MICRO               = 0
 ISRELEASED          = False
 VERSION             = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
 
 
 def git_version():
@@ -147,6 +157,7 @@ setup(
     platforms = ['any'],
     classifiers=CLASSIFIERS,
     packages=find_packages(exclude=["tests"]),
+    package_data={"geometry": ["*.pxd"]},
     install_requires=[
         'numpy',
         'cython',
@@ -154,5 +165,6 @@ setup(
     #cmdclass = CMDCLASS,
     zip_safe=False,
     include_dirs = [np.get_include()],
+    cmdclass={'test': PyTest},
     tests_require=['pytest'],
 )
